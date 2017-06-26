@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <script src=" https://unpkg.com/vue"></script>
+  <title>Vue Js</title>
+</head>
+<body>
+  <!--  Aqui começa a aplicação vue do objeto vue-app-->
+  <div id="vue-app">
+  <!--  Aqui estou chamando uma função e passando uma string como parametro-->
+    <h1>{{ greet( 'dia' ) }}</h1>
+    <!--  Aqui estou imprimindo um atributo-->
+    <p>Trabalho: {{ trabalho }}</p>
+    <!-- Aqui estou usando um data-bind para trazer o link na aplicação js para dentro do href -->
+    <a v-bind:href="website"> Website</a>
+    <!--  Aqui estou dando um bind em um pedaço de HTML -->
+    <p v-html="websiteTag"></p>
+    <!--  Aqui estou usando um modificador de evento chamado de prevent que  previne que o link seja aberto e sim venha antes o evento que coloquei-->
+    <a v-on:click.prevent="click" href="http://sss.com.br">Esse é o site da minha empresa Spring Software Studio</a>
+    <!--  Aqui estou imprimindo a minha idade-->
+    <p>Minha idade é: {{ idade }}</p>
+    <!--  Aqui estou chamando duas funções diferentes a partir do evento ao clicar, para ou adicionar ou subtrair minha idade-->
+    <button v-on:click="adicionar(1)"> Mais Velho!</button>
+    <button v-on:click="subtrair(1)"> Mais Novo!</button>
+    <!--  Aqui estou usando o evento double click para adicionar 10 anos na minha idade, e aproveitando mostrando outra forma de se declarar eventos-->
+    <button @dblclick="adicionar(10)"> 10 Anos Mais Velho!</button>
+    <button @dblclick="subtrair(10)">10 Anos Mais Novo!</button>
+    <button v-on:click.once="adicionar(99)">Somente se vive uma vez!</button>
+    <!--  Aqui uso eventos de teclado com modificadores encadeados-->
+    <h2>Agora me diga seu nome! Dica: abra o console</h2>
+    <label for="">Nome (Enter!): </label>
+    <input type="text" v-on:keyup.enter="logName">
+    <label for="">Idade (Alt + Enter!): </label>
+    <input type="text" v-on:keyup.alt.enter="logAge">
+    <!--  Aqui estou com um canvas que fica escutando um evento com o andar do mouse para acionar a função updateXY que atualiza os dois atributos declarados abaixo-->
+    <div id="canvas" v-on:mousemove="updateXY">
+      {{x}}, {{y}}
+    </div>
+  </div>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
