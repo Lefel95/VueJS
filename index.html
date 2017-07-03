@@ -10,7 +10,8 @@
 </head>
 <body>
   <!--  Aqui começa a aplicação vue do objeto vue-app-->
-  <div id="vue-app">
+
+  <div id="vue-app" v-bind:class="compClass"><!--Aqui eu estou colocando uma relacao a classe da div, fazendo a classe mudar conforme a ação do usuario --->
   <!--  Aqui estou chamando uma função e passando uma string como parametro-->
     <h1>{{ greet( 'dia' ) }}</h1>
     <!--  Aqui estou imprimindo um atributo-->
@@ -36,6 +37,30 @@
     <input type="text" v-on:keyup.enter="logName">
     <label for="">Idade (Alt + Enter!): </label>
     <input type="text" v-on:keyup.alt.enter="logAge">
+    <!--  Aqui uso a diretiva v-model para fazer um twoway data binding-->
+    <h2>OK! Agora vamos nos apresentar direito! Diga seu nome e Sua idade mais uma vez!</h2>
+    <label for="">Nome:</label>
+    <input type="text" v-model="name">
+    <label for="">Idade: </label>
+    <input type="number" v-model="age">
+    <p>Olá! meu nome é {{name}} e tenho {{age}} anos!</p>
+    <!--  propriedades contaveis sao como metodos porem enquanto os TODOS metodos sao executados toda vez que se chama um deles, as propriedades contaveis ficam em uma seção chamado de computed em que somente sao executados os que sao chamados-->
+    <h2>Agora lhe apresento as Propriedades Contaveis!</h2>
+    <button v-on:click="a++">Adicione A++</button>
+    <button v-on:click="b++">Adiciona B++</button>
+    <p>A = {{a}}</p>
+    <p>B = {{b}}</p>
+    <p>Minha Idade + A = {{agePlusA}}</p>
+    <p>Minha Idade + B = {{agePlusB}}</p>
+    <!--  Aqui eu uso uma função para trocar a propriedade gender, em que estou assimilando a uma classe css na primeira div da pagina-->
+    <h2>Você é um menino ou uma menina?</h2>
+    <form>
+      <label for="" name="gender">Menino</label>
+      <input type="radio" v-on:click="changeGender('boy')">
+      <label for="">Menina</label>
+      <input type="radio" name="gender" v-on:click="changeGender('girl')">
+    </form>
+
     <!--  Aqui estou com um canvas que fica escutando um evento com o andar do mouse para acionar a função updateXY que atualiza os dois atributos declarados abaixo-->
     <div id="canvas" v-on:mousemove="updateXY">
       {{x}}, {{y}}
